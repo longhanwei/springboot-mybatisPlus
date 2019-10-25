@@ -1,0 +1,42 @@
+spring:
+  #指定配置
+  profiles:
+    active: dev
+  datasource:
+    # 监控统计用的filter:stat 日志用的filter:log4j 防御sql注入的filter:wall
+    druid:
+      filters: stat
+      max-active: 20
+      # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
+      initial-size: 1
+      max-wait: 60000
+      min-idle: 1
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      # 用来检测连接是否有效的sql，要求是一个查询语句
+      validation-query:  select count(1) from 'table'
+      # 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效
+      test-while-idle: true
+      # 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+      test-on-borrow: false
+      # 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+      test-on-return: false
+      # 是否缓存preparedStatement，即PSCache
+      pool-prepared-statements: false
+      # 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true
+      max-open-prepared-statements: -1
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.107.47.91:3306/user?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 8b339ef6eb
+    type: com.alibaba.druid.pool.DruidDataSource
+#page
+
+#应用配置
+mybatis:
+  # mapper.xml包地址
+  mapper-locations: classpath:mapper/*.xml
+  # pojo生成包地址
+  type-aliases-package: com.bilikai.boot.mybatis.po
+server:
+  port: 8077

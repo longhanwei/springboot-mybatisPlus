@@ -1,0 +1,36 @@
+﻿##开发配置
+spring:
+  datasource:
+    # 如果存在多个数据源，监控的时候可以通过名字来区分开来
+    name: mysql
+    # 连接数据库的url
+    url: jdbc:mysql://47.107.47.91:3306/user?useUnicode=true&characterEncoding=utf8
+    # 连接数据库的账号
+    username: root
+    #  连接数据库的密码
+    password: 8b339ef6eb
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 扩展插件
+    # 监控统计用的filter:stat 日志用的filter:log4j 防御sql注入的filter:wall
+    druid:
+      filters: stat
+      max-active: 20
+        # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
+      initial-size: 1
+      max-wait: 60000
+      min-idle: 1
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+        # 用来检测连接是否有效的sql，要求是一个查询语句
+      validation-query:  select count(1) from 'table'
+        # 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效
+      test-while-idle: true
+        # 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+      test-on-borrow: false
+        # 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+      test-on-return: false
+        # 是否缓存preparedStatement，即PSCache
+      pool-prepared-statements: false
+        # 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true
+      max-open-prepared-statements: -1
