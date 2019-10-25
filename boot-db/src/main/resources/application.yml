@@ -26,9 +26,9 @@ spring:
       # 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true
       max-open-prepared-statements: -1
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.107.47.91:3306/user?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://127.0.0.1:3306/user?useUnicode=true&characterEncoding=utf8
     username: root
-    password: 8b339ef6eb
+    password: 123456789
     type: com.alibaba.druid.pool.DruidDataSource
 #page
 
